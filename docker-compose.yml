@@ -6,7 +6,7 @@ services:
       context: ./api
       dockerfile: Dockerfile
     volumes:
-      - ./api:/app
+      - ./api/todo-api:/app
     ports:
       - "3000:3000"
     networks:
@@ -17,9 +17,9 @@ services:
       context: ./front
       dockerfile: Dockerfile
     volumes:
-      - ./front:/app
+      - ./front/todo-front:/app
     ports:
-      - "3001:3001"
+      - "4000:3000"
     networks:
       - app-network
 
