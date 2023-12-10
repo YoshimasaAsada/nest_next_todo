@@ -7,7 +7,6 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./api/todo-api:/app
-      # - ./api/todo-api/node_modules
     depends_on:
       - db
     ports:
@@ -29,13 +28,12 @@ services:
 
   db:
     image: postgres:15.3
-    hostname: db
     ports:
       - 5432:5432
     environment:
-      POSTGRES_USER: udemy
-      POSTGRES_PASSWORD: udemy
-      POSTGRES_DB: udemy
+      POSTGRES_USER: test_user
+      POSTGRES_PASSWORD: test_pw
+      POSTGRES_DB: test_db
     restart: always
     networks:
       - app-network
