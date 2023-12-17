@@ -27,6 +27,10 @@ export default function Home() {
         email: form.values.email,
         password: form.values.password,
       })
+      await axios.post(`${process.env.NEXT_PUBLIC_TODO_API_URL}/auth/login`, {
+        email: form.values.email,
+        password: form.values.password,
+      })
       form.reset()
       router.push('/dashboard')
     } catch (error: any) {
