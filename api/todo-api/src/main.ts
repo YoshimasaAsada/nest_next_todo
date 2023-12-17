@@ -11,7 +11,7 @@ async function bootstrap() {
   // dtoのために必要
   app.enableCors({
     credentials: true,
-    origin: ['http://front:4000'],
+    origin: ['http://localhost:4000'],
   });
   // クロスオリジンの設定フロントエンドのドメインを設定
   app.use(cookieParser());
