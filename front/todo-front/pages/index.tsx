@@ -49,7 +49,7 @@ export default function Home() {
         <form onSubmit={form.onSubmit(handleSubmit)}>
           <TextInput id="email" {...form.getInputProps('email')} />
           <PasswordInput id="password" {...form.getInputProps('password')} />
-          <Button type="submit">{isRegister ? 'ログイン' : '新規登録'}</Button>
+          <Button type="submit">{isRegister ? '新規登録' : 'ログイン'}</Button>
         </form>
         <Anchor
           component="button"
@@ -58,7 +58,7 @@ export default function Home() {
             setIsRegister(!isRegister)
           }}
         >
-          {isRegister ? 'loginへ' : '新規登録へ'}
+          {isRegister ? '新規登録へ' : 'loginへ'}
         </Anchor>
       </Layout>
     </>
