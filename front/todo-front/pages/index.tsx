@@ -6,10 +6,12 @@ import { useForm } from '@mantine/form'
 import { AuthForm } from '@/types'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const [isRegister, setIsRegister] = useState(false)
   const form = useForm<AuthForm>({
     initialValues: {
       email: '',
@@ -22,11 +24,15 @@ export default function Home() {
 
   const handleSubmit = async () => {
     try {
-      console.log(form)
-      await axios.post(`${process.env.NEXT_PUBLIC_TODO_API_URL}/auth/signup`, {
-        email: form.values.email,
-        password: form.values.password,
-      })
+      if (isRegister) {
+        await axios.post(
+          `${process.env.NEXT_PUBLIC_TODO_API_URL}/auth/signup`,
+          {
+            email: form.values.email,
+            password: form.values.password,
+          }
+        )
+      }
       await axios.post(`${process.env.NEXT_PUBLIC_TODO_API_URL}/auth/login`, {
         email: form.values.email,
         password: form.values.password,
@@ -43,8 +49,17 @@ export default function Home() {
         <form onSubmit={form.onSubmit(handleSubmit)}>
           <TextInput id="email" {...form.getInputProps('email')} />
           <PasswordInput id="password" {...form.getInputProps('password')} />
-          <Button type="submit">新規登録</Button>
+          <Button type="submit">{isRegister ? 'ログイン' : '新規登録'}</Button>
         </form>
+        <Anchor
+          component="button"
+          type="button"
+          onClick={() => {
+            setIsRegister(!isRegister)
+          }}
+        >
+          {isRegister ? 'loginへ' : '新規登録へ'}
+        </Anchor>
       </Layout>
     </>
   )
