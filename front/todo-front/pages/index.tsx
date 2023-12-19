@@ -43,7 +43,7 @@ export default function Home() {
         <form onSubmit={form.onSubmit(handleSubmit)}>
           <TextInput id="email" {...form.getInputProps('email')} />
           <PasswordInput id="password" {...form.getInputProps('password')} />
-          <Button type="submit">ログイン</Button>
+          <Button type="submit">新規登録</Button>
         </form>
       </Layout>
     </>

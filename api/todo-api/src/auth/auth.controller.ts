@@ -47,10 +47,7 @@ export class AuthController {
 
   @HttpCode(HttpStatus.OK)
   @Post('logout')
-  async logout(
-    @Body() dto: AuthDto,
-    @Res({ passthrough: true }) res: Response,
-  ): Promise<Msg> {
+  async logout(@Res({ passthrough: true }) res: Response): Promise<Msg> {
     res.cookie('access_token', '', {
       httpOnly: true,
       secure: true,
