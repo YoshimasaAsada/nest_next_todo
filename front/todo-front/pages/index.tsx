@@ -1,18 +1,26 @@
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
 import { Layout } from '@/components/Layout'
 import { Anchor, Button, PasswordInput, TextInput } from '@mantine/core'
-import { useForm } from '@mantine/form'
+import { useForm, yupResolver } from '@mantine/form'
 import { AuthForm } from '@/types'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import * as Yup from 'yup'
 
-const inter = Inter({ subsets: ['latin'] })
+const schema = Yup.object().shape({
+  email: Yup.string()
+    .email('変な値です')
+    .required('メールが入力されていません'),
+  // 指定しなくてもいけるみたい
+  password: Yup.string().required().min(6),
+})
 
 export default function Home() {
   const [isRegister, setIsRegister] = useState(false)
+  const [error, steError] = useState('')
   const form = useForm<AuthForm>({
+    validate: yupResolver(schema),
     initialValues: {
       email: '',
       password: '',
