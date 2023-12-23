@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    // コンパイラのオプションを指定
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,
