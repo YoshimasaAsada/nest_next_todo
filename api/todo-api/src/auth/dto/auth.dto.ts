@@ -1,5 +1,5 @@
 import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
-// バリデーション
+// クライアントから送られてくるデータに対してのバリデーション
 export class AuthDto {
   @IsEmail()
   @IsNotEmpty()

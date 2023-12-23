@@ -8,6 +8,7 @@ export class AppController {
   @Get()
   getHello(): string {
     return this.appService.getHello();
+    // appコントローラ（このコントローラ）の中にあるappServiceのgetHelloメソッドを呼び出す
   }
 
   @Get(`test`)

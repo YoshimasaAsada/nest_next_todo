@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client';
 
 @Injectable()
 export class PrismaService extends PrismaClient {
+  // prismaserviceがprismaclientを継承している
   constructor(private readonly config: ConfigService) {
     super({
       datasources: {
@@ -12,5 +13,6 @@ export class PrismaService extends PrismaClient {
         },
       },
     });
+    // prismaclientのスーパークラスを継承
   }
 }

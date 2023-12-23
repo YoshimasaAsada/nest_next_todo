@@ -10,12 +10,16 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
+    // 個別のモジュールでインポートしなくても自動で使える
     AuthModule,
     UserModule,
     TodoModule,
     PrismaModule,
   ],
+  // 外部のモジュールを使いたい場合に作成する
   controllers: [AppController],
+  // このモジュールの中でAppコントローラを使う
   providers: [AppService],
+  // このコントローラの中でappサービスを使いたい,
 })
 export class AppModule {}
