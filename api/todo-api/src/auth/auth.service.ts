@@ -15,6 +15,7 @@ export class AuthService {
     private readonly config: ConfigService,
   ) {}
 
+  // 非同期なので戻り値はpromise
   async signUp(dto: AuthDto): Promise<Msg> {
     console.log(dto);
     const hashed = await bcrypt.hash(dto.password, 12);
@@ -30,6 +31,8 @@ export class AuthService {
       };
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
+        // prismaの操作に伴うエラーコードはPrismaClientKnownRequestErrorここにある
+        // エラーコードが特殊
         if (error.code === 'P2002') {
           throw new ForbiddenException('this email is already taken');
         }
@@ -50,6 +53,7 @@ export class AuthService {
     return this.generateJwt(user.id, user.email);
   }
 
+  // JWTの生成と生成したやつを返す
   async generateJwt(userId: number, email: string) {
     const payload = {
       sub: userId,
